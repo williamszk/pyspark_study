@@ -1,0 +1,7 @@
+{
+    "cSpell.words": [
+        "colname",
+        "pyspark"
+    ],
+    "python.formatting.provider": "black"
+}

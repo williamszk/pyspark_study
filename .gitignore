@@ -1,6 +1,7 @@
 .ipynb_checkpoints/
 books/
 venv/
+.venv/
 venv37/
 virtualenv/
 data/
@@ -9,9 +10,7 @@ models/
 *__pycache__/
 *.pytest_cache/
 *.mypy_cache/
-.vscode/
 .pytest_cache/
-.vscode
 *.Rproj.user
 *.Rproj
 *.RData
