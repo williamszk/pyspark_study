@@ -19,13 +19,14 @@ type(nums)
 
 # Transforming RDDs
 # map
-# flatmap
+# flat-map
 # filter
 # distinct
 # sample
 # union, intersection, subtract, cartesian
 
-nums.map(lambda x: x*x)
+nums2 = nums.map(lambda x: x*x)
+nums2.collect()
 
 nums.collect()
 

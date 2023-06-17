@@ -10,12 +10,14 @@ lines = sc.textFile("./datasets/ml-100k/u.data")
 # lines.collect()
 lines.take(10)
 
+# take the third column
 ratings = lines.map(lambda x: x.split()[2])
 ratings.take(10)
 
 result = ratings.countByValue()
 result
 type(result)
+dict(result)
 
 result.items()
 
