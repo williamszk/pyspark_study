@@ -29,8 +29,24 @@ schema = StructType(
 )
 
 names = spark.read.option("sep", " ").schema(schema).csv("datasets/Marvel-Names.txt")
+type(names)
 names.show(10)
+
 lines = spark.read.text("datasets/Marvel-Graph.txt")
+type(lines)
+lines.show(10)
+
+# (
+#     lines
+#     .withColumn(
+#         "id", func.split(func.col("value"), " ")[0]
+#     )
+#     .withColumn(
+#         "connections", func.size(func.split(func.col("value"), " ")) - 1
+#     )
+#     .groupBy("id")
+#     .agg(func.sum("connections").alias("connections"))
+# ).show(10)
 
 connections = (
     lines.withColumn("id", func.split(func.col("value"), " ")[0])
@@ -39,7 +55,11 @@ connections = (
     .agg(func.sum("connections").alias("connections"))
 )
 
+# connections.agg(func.min("connections")).show(10)
+
 min_num_connections_option = connections.agg(func.min("connections")).first()
+# type(min_num_connections_option)
+# min_num_connections_option[0]
 if min_num_connections_option:
     min_num_connections = min_num_connections_option[0]
 
@@ -48,6 +68,7 @@ print("min_num_connections: ", min_num_connections)
 connections_00 = connections.filter(func.col("connections") == min_num_connections)
 connections_00.show(10)
 
+# names.show(10)
 connections_01 = connections_00.join(names, "id")
 connections_01.show()
 
